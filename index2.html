@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spicy Code | Разработка цифровых решений</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00a7d2',
+                        secondary: '#b72237',
+                        accent: '#ff6822',
+                        dark: '#000000'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .tech-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.95) 100%),
+                        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #ff6822;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ff6822;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .input-highlight:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ff6822;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #00a7d2, #ff6822);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- Header -->
+    <header class="bg-black text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div style="width: 50px; padding: 0 10px 0 0;">
+                        <img src="./img/LOGO2.png" alt="">
+                    </div>
+                    <span class="text-xl font-bold">SPICY<span class="text-accent">CODE</span></span>
+                </div>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#services" class="nav-link py-2 font-medium">Услуги</a>
+                    <a href="#process" class="nav-link py-2 font-medium">Процесс</a>
+                    <a href="#portfolio" class="nav-link py-2 font-medium">Кейсы</a>
+                    <a href="#about" class="nav-link py-2 font-medium">О нас</a>
+                    <a href="#contact" class="nav-link py-2 font-medium">Контакты</a>
+                </nav>
+
+                <button class="md:hidden text-xl" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden mt-3 pb-2" id="mobile-menu">
+                <a href="#services" class="block py-2 hover:bg-gray-800 px-2 rounded">Услуги</a>
+                <a href="#process" class="block py-2 hover:bg-gray-800 px-2 rounded">Процесс</a>
+                <a href="#portfolio" class="block py-2 hover:bg-gray-800 px-2 rounded">Кейсы</a>
+                <a href="#about" class="block py-2 hover:bg-gray-800 px-2 rounded">О нас</a>
+                <a href="#contact" class="block py-2 hover:bg-gray-800 px-2 rounded">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="tech-bg text-white py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                        <span class="gradient-text">Цифровые решения</span><br>
+                        для вашего бизнеса
+                    </h1>
+                    <p class="text-xl mb-8 text-gray-300">Разработка сайтов, интернет-магазинов, телеграм ботов и автоматизация бизнес-процессов.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-accent text-white font-bold py-3 px-8 rounded text-center hover:bg-opacity-90 transition duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i> Обсудить проект
+                        </a>
+                        <a href="#portfolio" class="border-2 border-primary text-primary font-bold py-3 px-8 rounded text-center hover:bg-primary hover:text-white transition duration-300">
+                            Наши работы
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-primary rounded-xl opacity-20 blur-lg"></div>
+                        <div class="relative bg-black bg-opacity-70 border border-gray-800 rounded-xl p-8 backdrop-blur-sm">
+                            <div class="flex items-center mb-6">
+                                <div class="w-3 h-3 rounded-full bg-secondary mr-2"></div>
+                                <div class="w-3 h-3 rounded-full bg-accent mr-2"></div>
+                                <div class="w-3 h-3 rounded-full bg-primary"></div>
+                            </div>
+                            <div class="text-gray-400 font-mono">
+                                <p class="mb-2"><span class="text-primary">const</span> <span class="text-accent">spicyCode</span> <span class="text-white">=</span> {</p>
+                                <p class="ml-4 mb-1"><span class="text-accent">services</span>: [</p>
+                                <p class="ml-8 text-white">'Web Development',</p>
+                                <p class="ml-8 text-white">'E-commerce',</p>
+                                <p class="ml-8 text-white">'Telegram Bots',</p>
+                                <p class="ml-8 text-white">'Data Parsing'</p>
+                                <p class="ml-4 mb-1">],</p>
+                                <p class="ml-4"><span class="text-accent">stack</span>: <span class="text-white">'Modern Technologies'</span></p>
+                                <p>};</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Наши <span class="text-primary">услуги</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Комплексные решения для цифровизации вашего бизнеса</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="text-primary mb-4">
+                        <i class="fas fa-globe text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Разработка сайтов</h3>
+                    <p class="text-gray-600 mb-4">Создаем современные, адаптивные и быстрые сайты с уникальным дизайном.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Корпоративные сайты</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Лендинги</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Многостраничные сайты</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="text-secondary mb-4">
+                        <i class="fas fa-shopping-cart text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Интернет-магазины</h3>
+                    <p class="text-gray-600 mb-4">Полнофункциональные e-commerce решения с интеграцией платежных систем.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> WooCommerce</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Shopify</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Кастомные решения</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="text-accent mb-4">
+                        <i class="fab fa-telegram text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Telegram решения</h3>
+                    <p class="text-gray-600 mb-4">Боты и Mini Apps для автоматизации бизнес-процессов и маркетинга.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Чат-боты</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Mini Apps</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Парсеры каналов</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="text-primary mb-4">
+                        <i class="fas fa-robot text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Парсеры данных</h3>
+                    <p class="text-gray-600 mb-4">Сбор и анализ данных с любых источников для бизнес-аналитики.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Парсинг сайтов</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> API интеграции</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Обработка данных</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="text-secondary mb-4">
+                        <i class="fas fa-search-dollar text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO оптимизация</h3>
+                    <p class="text-gray-600 mb-4">Повышение видимости вашего сайта в поисковых системах.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Аудит сайта</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Техническое SEO</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Контент-стратегия</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div class="text-accent mb-4">
+                        <i class="fas fa-server text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Деплой и хостинг</h3>
+                    <p class="text-gray-600 mb-4">Настройка серверов и развертывание приложений.</p>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> VPS настройка</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> CI/CD pipelines</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent mr-2"></i> Мониторинг</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Наш <span class="text-primary">процесс</span> работы</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Четкие этапы разработки для достижения оптимального результата</p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="hidden lg:block absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-primary via-accent to-secondary"></div>
+
+                <!-- Process Items -->
+                <div class="space-y-16 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-8">
+                    <!-- Step 1 -->
+                    <div class="relative lg:text-right lg:pr-8">
+                        <div class="lg:absolute lg:right-0 lg:transform lg:translate-x-1/2 lg:-translate-y-1/2 h-6 w-6 rounded-full bg-primary flex items-center justify-center">
+                            <span class="text-white font-bold">1</span>
+                        </div>
+                        <div class="mt-6 lg:mt-0">
+                            <h3 class="text-xl font-bold mb-3 text-accent">Анализ</h3>
+                            <p class="text-gray-400">Изучаем ваш бизнес, цели и целевую аудиторию. Формируем техническое задание.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative lg:text-left lg:pl-8 lg:mt-32">
+                        <div class="lg:absolute lg:left-0 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 h-6 w-6 rounded-full bg-accent flex items-center justify-center">
+                            <span class="text-white font-bold">2</span>
+                        </div>
+                        <div class="mt-6 lg:mt-0">
+                            <h3 class="text-xl font-bold mb-3 text-accent">Прототипирование</h3>
+                            <p class="text-gray-400">Создаем прототипы и дизайн. Утверждаем концепцию перед разработкой.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative lg:text-right lg:pr-8 lg:mt-16">
+                        <div class="lg:absolute lg:right-0 lg:transform lg:translate-x-1/2 lg:-translate-y-1/2 h-6 w-6 rounded-full bg-secondary flex items-center justify-center">
+                            <span class="text-white font-bold">3</span>
+                        </div>
+                        <div class="mt-6 lg:mt-0">
+                            <h3 class="text-xl font-bold mb-3 text-accent">Разработка</h3>
+                            <p class="text-gray-400">Реализуем проект по утвержденному плану с промежуточными демонстрациями.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative lg:text-left lg:pl-8 lg:mt-32">
+                        <div class="lg:absolute lg:left-0 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 h-6 w-6 rounded-full bg-primary flex items-center justify-center">
+                            <span class="text-white font-bold">4</span>
+                        </div>
+                        <div class="mt-6 lg:mt-0">
+                            <h3 class="text-xl font-bold mb-3 text-accent">Запуск</h3>
+                            <p class="text-gray-400">Тестирование, обучение и передача проекта. Поддержка после запуска.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Наши <span class="text-primary">кейсы</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Реализованные проекты, которые приносят результат нашим клиентам</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                    <div class="h-48 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                        <i class="fas fa-shopping-bag text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">FashionHub</h3>
+                        <p class="text-gray-600 mb-4">Интернет-магазин модной одежды с интеграцией 1С и системой лояльности.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary bg-opacity-10 text-primary text-xs px-3 py-1 rounded-full">E-commerce</span>
+                            <span class="bg-secondary bg-opacity-10 text-secondary text-xs px-3 py-1 rounded-full">WooCommerce</span>
+                            <span class="bg-accent bg-opacity-10 text-accent text-xs px-3 py-1 rounded-full">CRM</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">2023</span>
+                            <a href="#" class="text-primary font-medium hover:underline">Подробнее <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                    <div class="h-48 bg-gradient-to-r from-secondary to-accent flex items-center justify-center">
+                        <i class="fab fa-telegram text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">AutoSupport Bot</h3>
+                        <p class="text-gray-600 mb-4">Телеграм бот для автоматической поддержки клиентов с интеграцией в базу знаний.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary bg-opacity-10 text-primary text-xs px-3 py-1 rounded-full">Telegram</span>
+                            <span class="bg-secondary bg-opacity-10 text-secondary text-xs px-3 py-1 rounded-full">AI</span>
+                            <span class="bg-accent bg-opacity-10 text-accent text-xs px-3 py-1 rounded-full">Python</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">2023</span>
+                            <a href="#" class="text-primary font-medium hover:underline">Подробнее <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                    <div class="h-48 bg-gradient-to-r from-accent to-primary flex items-center justify-center">
+                        <i class="fas fa-chart-line text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">MarketParser Pro</h3>
+                        <p class="text-gray-600 mb-4">Система мониторинга цен конкурентов с аналитикой и автоматическими отчетами.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary bg-opacity-10 text-primary text-xs px-3 py-1 rounded-full">Парсинг</span>
+                            <span class="bg-secondary bg-opacity-10 text-secondary text-xs px-3 py-1 rounded-full">Big Data</span>
+                            <span class="bg-accent bg-opacity-10 text-accent text-xs px-3 py-1 rounded-full">Аналитика</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">2022</span>
+                            <a href="#" class="text-primary font-medium hover:underline">Подробнее <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="#" class="inline-block border-2 border-primary text-primary font-bold py-3 px-8 rounded hover:bg-primary hover:text-white transition duration-300">
+                    <i class="fas fa-images mr-2"></i> Все проекты
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-primary rounded-xl opacity-10 blur-lg"></div>
+                        <div class="relative bg-white rounded-xl shadow-lg p-8">
+                            <h2 class="text-3xl font-bold mb-6">О <span class="text-primary">компании</span></h2>
+                            <p class="text-gray-600 mb-6">Spicy Code - это команда профессионалов, специализирующаяся на разработке цифровых решений для бизнеса. Мы объединяем технические знания, креативность и глубокое понимание бизнес-процессов.</p>
+
+                            <div class="space-y-6">
+                                <div class="flex">
+                                    <div class="text-primary mr-4">
+                                        <i class="fas fa-rocket text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold mb-2">Наша миссия</h3>
+                                        <p class="text-gray-600">Создавать технологичные решения, которые помогают бизнесу расти и развиваться в цифровую эпоху.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="text-secondary mr-4">
+                                        <i class="fas fa-users text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold mb-2">Наша команда</h3>
+                                        <p class="text-gray-600">10 специалистов разного профиля: разработчики, дизайнеры, аналитики и менеджеры проектов.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex">
+                                    <div class="text-accent mr-4">
+                                        <i class="fas fa-medal text-2xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold mb-2">Наши принципы</h3>
+                                        <p class="text-gray-600">Качество, прозрачность, ответственность и индивидуальный подход к каждому клиенту.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 lg:pl-10">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Наши <span class="text-primary">технологии</span></h3>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- Tech 1 -->
+                            <div class="flex items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-react text-primary text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Frontend</h4>
+                                    <p class="text-gray-600 text-sm">React, Vue.js, Tailwind</p>
+                                </div>
+                            </div>
+
+                            <!-- Tech 2 -->
+                            <div class="flex items-center">
+                                <div class="bg-secondary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-node-js text-secondary text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Backend</h4>
+                                    <p class="text-gray-600 text-sm">Node.js, Python, PHP</p>
+                                </div>
+                            </div>
+
+                            <!-- Tech 3 -->
+                            <div class="flex items-center">
+                                <div class="bg-accent bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-database text-accent text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Базы данных</h4>
+                                    <p class="text-gray-600 text-sm">PostgreSQL, MongoDB</p>
+                                </div>
+                            </div>
+
+                            <!-- Tech 4 -->
+                            <div class="flex items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-telegram text-primary text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Telegram</h4>
+                                    <p class="text-gray-600 text-sm">Боты, Mini Apps</p>
+                                </div>
+                            </div>
+
+                            <!-- Tech 5 -->
+                            <div class="flex items-center">
+                                <div class="bg-secondary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-cloud text-secondary text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">DevOps</h4>
+                                    <p class="text-gray-600 text-sm">Docker, AWS, CI/CD</p>
+                                </div>
+                            </div>
+
+                            <!-- Tech 6 -->
+                            <div class="flex items-center">
+                                <div class="bg-accent bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-search text-accent text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">SEO</h4>
+                                    <p class="text-gray-600 text-sm">Аудит, Оптимизация</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-black text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2 text-primary">50+</div>
+                    <div class="text-gray-400">Завершенных проектов</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2 text-secondary">35</div>
+                    <div class="text-gray-400">Довольных клиентов</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2 text-accent">10</div>
+                    <div class="text-gray-400">Специалистов</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold mb-2 text-primary">5</div>
+                    <div class="text-gray-400">Лет на рынке</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Свяжитесь с <span class="text-primary">нами</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Готовы обсудить ваш проект? Оставьте заявку, и мы свяжемся с вами в ближайшее время.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Ваше имя</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-highlight focus:border-primary" placeholder="Иван Иванов" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-highlight focus:border-primary" placeholder="example@mail.com" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Телефон</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-highlight focus:border-primary" placeholder="+7 (999) 123-45-67">
+                        </div>
+
+                        <div>
+                            <label for="service" class="block text-gray-700 font-medium mb-2">Интересующая услуга</label>
+                            <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-highlight focus:border-primary">
+                                <option value="">Выберите услугу</option>
+                                <option value="website">Разработка сайта</option>
+                                <option value="ecommerce">Интернет-магазин</option>
+                                <option value="telegram">Telegram бот</option>
+                                <option value="parser">Парсер данных</option>
+                                <option value="seo">SEO оптимизация</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Сообщение</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-highlight focus:border-primary" placeholder="Опишите ваш проект..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300">
+                            Отправить заявку <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="lg:w-1/2 lg:pl-10">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-inner h-full">
+                        <h3 class="text-xl font-bold mb-6">Контактная информация</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="text-primary mr-4">
+                                    <i class="fas fa-map-marker-alt text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Адрес</h4>
+                                    <p class="text-gray-600">г. Москва, ул. Технологическая, д. 42, офис 15</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="text-secondary mr-4">
+                                    <i class="fas fa-phone-alt text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Телефон</h4>
+                                    <p class="text-gray-600">+7 (495) 123-45-67</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="text-accent mr-4">
+                                    <i class="fas fa-envelope text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-gray-600">contact@spicycode.ru</p>
+                                </div>
+                            </div>
+
+                            <div class="flex">
+                                <div class="text-primary mr-4">
+                                    <i class="fas fa-clock text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Режим работы</h4>
+                                    <p class="text-gray-600">Пн-Пт: 10:00 - 19:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Мы в соцсетях</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition duration-300">
+                                    <i class="fab fa-vk"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition duration-300">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-gray-900 transition duration-300">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition duration-300">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-black text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Готовы начать <span class="text-primary">проект</span>?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-300">Оставьте заявку прямо сейчас и получите бесплатную консультацию от наших специалистов.</p>
+            <a href="#contact" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition duration-300">
+                <i class="fas fa-paper-plane mr-2"></i> Отправить заявку
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="hexagon bg-primary w-10 h-10 flex items-center justify-center mr-3">
+                            <i class="fas fa-code text-white text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold">SPICY<span class="text-accent">CODE</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Разработка цифровых решений для бизнеса.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Услуги</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Разработка сайтов</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Интернет-магазины</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Telegram решения</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Парсеры данных</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Компания</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">О нас</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white transition duration-300">Процесс</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition duration-300">Кейсы</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">г. Москва, ул. Технологическая, д. 42</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">+7 (495) 123-45-67</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">contact@spicycode.ru</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Spicy Code. Все права защищены.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Политика конфиденциальности</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            // Here you would typically send the data to your server
+            console.log('Form submitted:', { name, email, phone, service, message });
+
+            // Show success message
+            alert('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.');
+
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

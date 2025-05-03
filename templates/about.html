@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}О университете{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h2 class="section__title">О ЮУрГУ</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Южно-Уральский государственный университет (ЮУрГУ) - это крупнейший образовательный и научный центр Южного Урала, который входит в число ведущих университетов России.</p>
+
+                <h3>История</h3>
+                <p>Университет основан в 1943 году как Челябинский механико-машиностроительный институт. В 1997 году получил статус университета. За годы существования вуз подготовил более 250 тысяч специалистов.</p>
+
+                <h3>Миссия</h3>
+                <p>Формирование интеллектуального потенциала и конкурентоспособных компетенций для инновационного развития региона и страны через интеграцию образования, науки и производства.</p>
+
+                <h3>Достижения</h3>
+                <ul class="achievements-list">
+                    <li><i class="fas fa-check-circle"></i> Входит в топ-50 российских университетов</li>
+                    <li><i class="fas fa-check-circle"></i> Более 30 000 студентов</li>
+                    <li><i class="fas fa-check-circle"></i> 200+ образовательных программ</li>
+                    <li><i class="fas fa-check-circle"></i> Современные научные лаборатории</li>
+                    <li><i class="fas fa-check-circle"></i> Партнерства с ведущими компаниями</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='img/about.jpg') }}" alt="ЮУрГУ">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--gray">
+    <div class="container">
+        <h2 class="section__title">Факты и цифры</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__number">75+</div>
+                <div class="stat-card__title">Лет истории</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__number">30K</div>
+                <div class="stat-card__title">Студентов</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__number">200+</div>
+                <div class="stat-card__title">Образовательных программ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__number">13</div>
+                <div class="stat-card__title">Факультетов</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h2>Добро пожаловать в ЮУрГУ!</h2>
+        <p>Ведущий университет Южного Урала, сочетающий классические традиции и инновационные подходы в образовании.</p>
+        <a href="{{ url_for('about') }}" class="btn">Узнать больше</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section__title">Новости университета</h2>
+        <div class="news-grid">
+            {% for item in news %}
+            <div class="news-card">
+                <img src="{{ url_for('static', filename='images/news-' + loop.index + '.jpg') }}" alt="{{ item.title }}" class="news-card__img">
+                <div class="news-card__content">
+                    <span class="news-card__date">{{ item.date }}</span>
+                    <h3 class="news-card__title">{{ item.title }}</h3>
+                    <p>{{ item.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section--gray">
+    <div class="container">
+        <h2 class="section__title">Наши преимущества</h2>
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <i class="fas fa-graduation-cap advantage-card__icon"></i>
+                <h3 class="advantage-card__title">Качественное образование</h3>
+                <p>Программы, соответствующие международным стандартам</p>
+            </div>
+            <div class="advantage-card">
+                <i class="fas fa-flask advantage-card__icon"></i>
+                <h3 class="advantage-card__title">Современные лаборатории</h3>
+                <p>Оборудование для практических занятий и исследований</p>
+            </div>
+            <div class="advantage-card">
+                <i class="fas fa-globe advantage-card__icon"></i>
+                <h3 class="advantage-card__title">Международное сотрудничество</h3>
+                <p>Программы обмена с ведущими университетами мира</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

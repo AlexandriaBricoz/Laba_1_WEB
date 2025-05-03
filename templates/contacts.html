@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}О университете{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h2 class="section__title">О ЮУрГУ</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Южно-Уральский государственный университет (ЮУрГУ) - это крупнейший образовательный и научный центр Южного Урала, который входит в число ведущих университетов России.</p>
+
+
+                <h3>Телеграмм</h3>
+                <ul class="achievements-list">
+                    <li><i class="fas fa-check-circle"></i> 89878898989</li>
+
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='img/LOGO2.png') }}" alt="ЮУрГУ">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--gray">
+    <div class="container">
+        <h2 class="section__title">Факты и цифры</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__number">75+</div>
+                <div class="stat-card__title">Лет истории</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__number">30K</div>
+                <div class="stat-card__title">Студентов</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__number">200+</div>
+                <div class="stat-card__title">Образовательных программ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__number">13</div>
+                <div class="stat-card__title">Факультетов</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

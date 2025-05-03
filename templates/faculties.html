@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Факультеты{% endblock %}
+
+{% block content %}
+<h1>Факультеты ЮУрГУ</h1>
+
+<div class="faculties-list">
+    {% for faculty in faculties %}
+    <div class="faculty-card">
+        <h3>{{ faculty.name }}</h3>
+        <p>Аббревиатура: {{ faculty.abbr }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
